@@ -17,9 +17,22 @@ namespace Lecture_5_Virtual_override
 
         public double OverdraftFee { get => _overdraftFee; set => _overdraftFee = value; }
 
+        public override bool Deposit(double amount)
+        {
+            if(IsAmountPositive(amount))
+            {
+                _balance += amount;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public override bool Withdraw(double amount)
         {
-            bool withdrewAmount = base.Withdraw(amount);
+            bool withdrewAmount = Withdraw(amount);
             if(!withdrewAmount)
             {
                 Balance -= OverdraftFee;

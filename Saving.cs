@@ -21,13 +21,26 @@ namespace Lecture_5_Virtual_override
         //}
         public override bool Deposit(double amount)
         {
-            bool depositAmount = base.Deposit(amount);
+            bool depositAmount = Deposit(amount);
             if (depositAmount)
             {
                 Balance += _interest;
             }
 
             return depositAmount;
+        }
+
+        public override bool Withdraw(double amount)
+        {
+            if ((IsAmountPositive(amount)) && CheckBalance(amount))
+            {
+                _balance -= amount;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
